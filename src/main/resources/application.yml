@@ -1,0 +1,7 @@
+restTemplate:
+  factory:
+    readTimeout: 10000
+    connectTimeout: 10000
+  httpClient:
+    maxConnTotal: 100
+    maxConnPerRoute: 5
