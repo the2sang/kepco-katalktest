@@ -10,13 +10,11 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 
 
-public class RestAPITest {
+public class RestAPIJackson2Test {
 
     public void setTsmsAgentMessageDTO(TsmsAgentMessageDTO tsmsAgentMessageDTO) {
         this.tsmsAgentMessageDTO = tsmsAgentMessageDTO;
@@ -24,15 +22,15 @@ public class RestAPITest {
 
     private TsmsAgentMessageDTO tsmsAgentMessageDTO;
     private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
-    public RestAPITest() {}
+    public RestAPIJackson2Test() {}
 
-    public RestAPITest(TsmsAgentMessageDTO tsmsAgentMessageDTO) {
+    public RestAPIJackson2Test(TsmsAgentMessageDTO tsmsAgentMessageDTO) {
         this.tsmsAgentMessageDTO = tsmsAgentMessageDTO;
     }
 
     public static void main(String[] args) throws JsonParseException {
 
-        RestAPITest restAPITest = new RestAPITest();
+        RestAPIJackson2Test restAPITest = new RestAPIJackson2Test();
         TsmsAgentMessageDTO testDto = new TsmsAgentMessageDTO();
         testDto.setServiceSeqno(1810013776L);
         testDto.setSendMessage("<한국전력공사> 전자세금계산서 발행 시 종사업장번호 필수 입력 알림\n" +
@@ -73,7 +71,7 @@ public class RestAPITest {
         testDto.setSendFlag("N");
 
         restAPITest.setTsmsAgentMessageDTO(testDto);
-        restAPITest.post(RestAPITest.TSMS_CREATE_CALL_URL, testDto);
+        restAPITest.post(RestAPIJackson2Test.TSMS_CREATE_CALL_URL, testDto);
 
     }
 
