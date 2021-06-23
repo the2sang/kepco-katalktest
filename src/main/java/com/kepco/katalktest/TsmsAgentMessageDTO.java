@@ -1,12 +1,14 @@
 package com.kepco.katalktest;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.sql.Date;
+import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 
@@ -36,7 +38,7 @@ public class TsmsAgentMessageDTO implements Serializable {
 
     private String jobType;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
     private String sendReserveDate;
 
     private String templateCode;
@@ -73,7 +75,7 @@ public class TsmsAgentMessageDTO implements Serializable {
 
     private String registerBy;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
     private String registerDate;
 
     private String custBackupFlag;

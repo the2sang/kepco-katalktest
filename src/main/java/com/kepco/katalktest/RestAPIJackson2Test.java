@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,7 +22,8 @@ public class RestAPIJackson2Test {
     }
 
     private TsmsAgentMessageDTO tsmsAgentMessageDTO;
-    private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
+    //private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
+    private static String TSMS_CREATE_CALL_URL = "http://168.78.201.129:9070/api/tsms-agent-messages";
     public RestAPIJackson2Test() {}
 
     public RestAPIJackson2Test(TsmsAgentMessageDTO tsmsAgentMessageDTO) {
@@ -52,14 +54,14 @@ public class RestAPIJackson2Test {
         testDto.setCallbackNo("123");
         testDto.setJobType("R00");
 
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String today = sdf.format(new Date());
+        long curTime =System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        String today = sdf.format(new Date(curTime));
 
 
-        testDto.setSendReserveDate(today);
+        //testDto.setSendReserveDate(LocalDate.now());
         testDto.setTemplateCode("[CRM]000001");
-        testDto.setRegisterDate(today);
+        //testDto.setRegisterDate(LocalDate.now());
         testDto.setRegisterBy("강희철");
         testDto.setImgAttachFlag("N");
         testDto.setCustData1("EDI-PPA");

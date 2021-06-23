@@ -8,6 +8,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -18,7 +20,8 @@ public class RestAPIJsonSimpleTest {
     }
 
     private TsmsAgentMessageDTO tsmsAgentMessageDTO;
-    private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
+    //private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
+    private static String TSMS_CREATE_CALL_URL = "http://168.78.201.129:9070/api/tsms-agent-messages";
     public RestAPIJsonSimpleTest() {}
 
     public RestAPIJsonSimpleTest(TsmsAgentMessageDTO tsmsAgentMessageDTO) {
@@ -50,13 +53,14 @@ public class RestAPIJsonSimpleTest {
         testDto.setJobType("R00");
 
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        long curTime = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String today = sdf.format(new Date());
 
 
-        testDto.setSendReserveDate(today);
+        //testDto.setSendReserveDate(today);
         testDto.setTemplateCode("[CRM]000001");
-        testDto.setRegisterDate(today);
+        //testDto.setRegisterDate(today);
         testDto.setRegisterBy("강희철");
         testDto.setImgAttachFlag("N");
         testDto.setCustData1("EDI-PPA");
@@ -115,8 +119,8 @@ public class RestAPIJsonSimpleTest {
             con.setRequestProperty("Content-Type", "application/json");
             con.setDoInput(true);
             con.setDoOutput(true); //POST 데이터를 OutputStream으로 넘겨 주겠다는 설정
-            con.setUseCaches(false);
-            con.setDefaultUseCaches(false);
+            //con.setUseCaches(false);
+            //con.setDefaultUseCaches(false);
 
             OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
 
