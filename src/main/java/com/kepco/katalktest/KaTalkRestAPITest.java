@@ -1,36 +1,22 @@
 package com.kepco.katalktest;
 
-import org.json.simple.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class RestAPIJsonSimpleTest2 {
+public class KaTalkRestAPITest {
 
-    private final String USER_AGENT = "Mozilla/5.0";
 
-    public void setTsmsAgentMessageDTO(TsmsAgentMessageDTO tsmsAgentMessageDTO) {
-        this.tsmsAgentMessageDTO = tsmsAgentMessageDTO;
-    }
-
-    private TsmsAgentMessageDTO tsmsAgentMessageDTO;
-    private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
-    //private static String TSMS_CREATE_CALL_URL = "http://168.78.201.129:9070/api/tsms-agent-messages";
-    public RestAPIJsonSimpleTest2() {}
-
-    public RestAPIJsonSimpleTest2(TsmsAgentMessageDTO tsmsAgentMessageDTO) {
-        this.tsmsAgentMessageDTO = tsmsAgentMessageDTO;
-    }
+    public KaTalkRestAPITest() {}
 
     public static void main(String[] args) throws Exception {
 
-        RestAPIJsonSimpleTest2 restAPITest = new RestAPIJsonSimpleTest2();
+        KaTalkRestAPITest restAPITest = new KaTalkRestAPITest();
 
-        String callUrl = "http://localhost:9070/api/tsms-edi-message?";
+        //String callUrl = "http://localhost:9070/api/tsms-edi-message?";
+        String callUrl = "http://168.78.201.129:9070/api/tsms-agent-messages";
 
         StringBuffer paramSf = new StringBuffer();
         String serviceSeqno = "1810013776";
@@ -78,6 +64,9 @@ public class RestAPIJsonSimpleTest2 {
     }
 
     private void sendSms(String targetUrl) throws Exception {
+
+        String USER_AGENT = "Mozilla/5.0";
+
         URL url = new URL(targetUrl);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
