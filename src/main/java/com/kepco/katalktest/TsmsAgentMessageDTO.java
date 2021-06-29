@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import java.time.LocalDateTime;
-import java.util.Objects;
+//import java.util.Objects;
 
 
 public class TsmsAgentMessageDTO implements Serializable {
@@ -83,7 +83,7 @@ public class TsmsAgentMessageDTO implements Serializable {
     private String custMessageType;
 
 
-    private LocalDate custBackupDate;
+    private String custBackupDate;
 
     private String custData1;
 
@@ -107,7 +107,7 @@ public class TsmsAgentMessageDTO implements Serializable {
 
     private String sendFlag;
 
-    private LocalDate sendDate;
+    private String sendDate;
 
     private String resendFlag;
 
@@ -117,9 +117,9 @@ public class TsmsAgentMessageDTO implements Serializable {
 
     private String mmsImgServerPath3;
 
-    private LocalDate imgSendDate;
+    private String imgSendDate;
 
-    private LocalDate updateDate;
+    private String updateDate;
 
     private String updateBy;
 
@@ -393,11 +393,11 @@ public class TsmsAgentMessageDTO implements Serializable {
         this.custMessageType = custMessageType;
     }
 
-    public LocalDate getCustBackupDate() {
+    public String getCustBackupDate() {
         return custBackupDate;
     }
 
-    public void setCustBackupDate(LocalDate custBackupDate) {
+    public void setCustBackupDate(String custBackupDate) {
         this.custBackupDate = custBackupDate;
     }
 
@@ -489,11 +489,11 @@ public class TsmsAgentMessageDTO implements Serializable {
         this.sendFlag = sendFlag;
     }
 
-    public LocalDate getSendDate() {
+    public String getSendDate() {
         return sendDate;
     }
 
-    public void setSendDate(LocalDate sendDate) {
+    public void setSendDate(String sendDate) {
         this.sendDate = sendDate;
     }
 
@@ -529,19 +529,19 @@ public class TsmsAgentMessageDTO implements Serializable {
         this.mmsImgServerPath3 = mmsImgServerPath3;
     }
 
-    public LocalDate getImgSendDate() {
+    public String getImgSendDate() {
         return imgSendDate;
     }
 
-    public void setImgSendDate(LocalDate imgSendDate) {
+    public void setImgSendDate(String imgSendDate) {
         this.imgSendDate = imgSendDate;
     }
 
-    public LocalDate getUpdateDate() {
+    public String getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(LocalDate updateDate) {
+    public void setUpdateDate(String updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -577,26 +577,26 @@ public class TsmsAgentMessageDTO implements Serializable {
         this.sendedId = sendedId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof TsmsAgentMessageDTO)) {
-            return false;
-        }
-
-        TsmsAgentMessageDTO tsmsAgentMessageDTO = (TsmsAgentMessageDTO) o;
-        if (this.messageSeqno == null) {
-            return false;
-        }
-        return Objects.equals(this.messageSeqno, tsmsAgentMessageDTO.messageSeqno);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.messageSeqno);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) {
+//            return true;
+//        }
+//        if (!(o instanceof TsmsAgentMessageDTO)) {
+//            return false;
+//        }
+//
+//        TsmsAgentMessageDTO tsmsAgentMessageDTO = (TsmsAgentMessageDTO) o;
+//        if (this.messageSeqno == null) {
+//            return false;
+//        }
+//        return Objects.equals(this.messageSeqno, tsmsAgentMessageDTO.messageSeqno);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(this.messageSeqno);
+//    }
 
     // prettier-ignore
     @Override
