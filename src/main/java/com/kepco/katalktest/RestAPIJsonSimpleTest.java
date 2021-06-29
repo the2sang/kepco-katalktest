@@ -1,15 +1,12 @@
 package com.kepco.katalktest;
 
 import org.json.simple.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -20,8 +17,8 @@ public class RestAPIJsonSimpleTest {
     }
 
     private TsmsAgentMessageDTO tsmsAgentMessageDTO;
-    //private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
-    private static String TSMS_CREATE_CALL_URL = "http://168.78.201.129:9070/api/tsms-agent-messages";
+    private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
+    //private static String TSMS_CREATE_CALL_URL = "http://168.78.201.129:9070/api/tsms-agent-messages";
     public RestAPIJsonSimpleTest() {}
 
     public RestAPIJsonSimpleTest(TsmsAgentMessageDTO tsmsAgentMessageDTO) {
@@ -33,17 +30,7 @@ public class RestAPIJsonSimpleTest {
         RestAPIJsonSimpleTest restAPITest = new RestAPIJsonSimpleTest();
         TsmsAgentMessageDTO testDto = new TsmsAgentMessageDTO();
         testDto.setServiceSeqno(1810013776L);
-        testDto.setSendMessage("<한국전력공사> 전자세금계산서 발행 시 종사업장번호 필수 입력 알림\n" +
-                "\n" +
-                "▧ 종사업장번호 (★필수입력)\n" +
-                " ☞ 임실지사:140\n" +
-                "※ 미입력 시 전자세금계산서 미수신되어 발전대금 지급 불가\n" +
-                "\n" +
-                "[종사업장번호 입력방법] 거래처 관리 → 건별 등록 → 사업자등록번호 입력(120-82-00052) → 확인 → 종사업자 140 선택\n" +
-                "[종사업장번호 입력문의] 국세청 홈택스 : 국번없이 ☎126 → 1번 → 2번 → 1번 선택 후 상담사 연결\n" +
-                "\n" +
-                "관련 문의사항은 한국전력공사 임실지사 (☎063-640-5212)로 연락부탁드립니다.\n" +
-                "감사합니다.");
+        testDto.setSendMessage("test:" + "감사합니다.");
         testDto.setBackupMessage("백업메세지");
         testDto.setBackupProcessCode("000");
         testDto.setMessageType("002");
@@ -52,10 +39,10 @@ public class RestAPIJsonSimpleTest {
         testDto.setCallbackNo("123");
         testDto.setJobType("R00");
 
-        Calendar cal = Calendar.getInstance();
-        long curTime = System.currentTimeMillis();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String today = sdf.format(new Date());
+//        Calendar cal = Calendar.getInstance();
+//        long curTime = System.currentTimeMillis();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//        String today = sdf.format(new Date());
 
 
         //testDto.setSendReserveDate(today);
@@ -88,9 +75,9 @@ public class RestAPIJsonSimpleTest {
         jsonObject.put("receiveMobileNo", dto.getReceiveMobileNo());
         jsonObject.put("callbackNo", dto.getCallbackNo());
         jsonObject.put("jobType", dto.getJobType());
-        jsonObject.put("sendReserveDate", dto.getSendReserveDate());
+        //jsonObject.put("sendReserveDate", dto.getSendReserveDate());
         jsonObject.put("templateCode", dto.getTemplateCode());
-        jsonObject.put("registerDate", dto.getRegisterDate());
+        //jsonObject.put("registerDate", dto.getRegisterDate());
         jsonObject.put("registerBy", dto.getRegisterBy());
         jsonObject.put("imgAttachFlag", dto.getImgAttachFlag());
         jsonObject.put("custData1", dto.getCustData1());
@@ -109,8 +96,8 @@ public class RestAPIJsonSimpleTest {
         try {
             URL url = new URL(strUrl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setConnectTimeout(10000); //서버에 연결되는 Timeout 시간 설정
-            con.setReadTimeout(10000); // InputStream 읽어 오는 Timeout 시간 설정
+//            con.setConnectTimeout(10000); //서버에 연결되는 Timeout 시간 설정
+//            con.setReadTimeout(10000); // InputStream 읽어 오는 Timeout 시간 설정
             //con.addRequestProperty("x-api-key", RestTestCommon.API_KEY); //key값 설정
 
             con.setRequestMethod("POST");
@@ -132,17 +119,18 @@ public class RestAPIJsonSimpleTest {
             wr.write(paramObject.toJSONString()); //json 형식의 message 전달
             wr.flush();
 
-            StringBuilder sb = new StringBuilder();
+            //StringBuilder sb = new StringBuilder();
+            StringBuffer sf = new StringBuffer();
             if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                //Stream을 처리해줘야 하는 귀찮음이 있음.
+
                 BufferedReader br = new BufferedReader(
                         new InputStreamReader(con.getInputStream(), "utf-8"));
                 String line;
                 while ((line = br.readLine()) != null) {
-                    sb.append(line).append("\n");
+                    sf.append(line).append("\n");
                 }
                 br.close();
-                System.out.println("" + sb.toString());
+                System.out.println("" + sf.toString());
             } else {
                 System.out.println(con.getResponseMessage());
             }
