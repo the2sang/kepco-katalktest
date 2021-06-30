@@ -17,8 +17,8 @@ public class RestAPIJsonSimpleTest {
     }
 
     private TsmsAgentMessageDTO tsmsAgentMessageDTO;
-    private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
-    //private static String TSMS_CREATE_CALL_URL = "http://168.78.201.129:9070/api/tsms-agent-messages";
+    //private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
+    private static String TSMS_CREATE_CALL_URL = "http://168.78.201.129:9070/api/tsms-agent-messages";
     public RestAPIJsonSimpleTest() {}
 
     public RestAPIJsonSimpleTest(TsmsAgentMessageDTO tsmsAgentMessageDTO) {
