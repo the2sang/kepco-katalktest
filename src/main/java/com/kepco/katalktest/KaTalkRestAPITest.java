@@ -16,10 +16,10 @@ public class KaTalkRestAPITest {
         KaTalkRestAPITest restAPITest = new KaTalkRestAPITest();
 
         //String callUrl = "http://localhost:9070/api/tsms-edi-message?";
-        String callUrl = "http://168.78.201.129:9070/api/tsms-agent-messages";
+        String callUrl = "http://168.78.201.129:9070/api/tsms-agent-messages?";
 
         StringBuffer paramSf = new StringBuffer();
-        String serviceSeqno = "1810013776";
+        String serviceSeqno = "1810013776L";
         String sendMessage = "test";
         String backupMessage = "백업메세지"; //한글 텍스트는 URLEncoder.encode 필요
         String backupProcessCode = "000";
