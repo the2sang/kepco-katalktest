@@ -1,7 +1,7 @@
 package com.kepco.katalktest;
 
 
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -17,7 +17,7 @@ import java.nio.file.Files;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
+//@Slf4j
 public class PPABatchErrorDelete {
 
     public static void main(String[] args) throws IOException {
