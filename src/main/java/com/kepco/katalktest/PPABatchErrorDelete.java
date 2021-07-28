@@ -79,6 +79,7 @@ public class PPABatchErrorDelete {
 
         } catch (Exception e){
             System.err.println(e.toString());
+            e.printStackTrace();
         }
     }
 

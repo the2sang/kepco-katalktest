@@ -73,7 +73,7 @@ public class KaTalkRestAPITest {
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
         con.setRequestMethod("GET"); // optional default is GET
-        con.setRequestProperty("User-Agent", USER_AGENT); // add request header
+        //con.setRequestProperty("User-Agent", USER_AGENT); // add request header
 
         int responseCode = con.getResponseCode();
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -84,7 +84,7 @@ public class KaTalkRestAPITest {
             response.append(inputLine);
         }
 
-        in.close(); // print result
+        in.close(); // print resultdhf
         System.out.println("HTTP 응답 코드 : " + responseCode);
         System.out.println("HTTP body : " + response.toString());
     }
