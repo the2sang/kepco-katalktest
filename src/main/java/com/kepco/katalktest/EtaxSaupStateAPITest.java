@@ -40,7 +40,6 @@ public class EtaxSaupStateAPITest {
     public void post(String strUrl) {
         try {
 
-
             String serviceUrl = strUrl + "?serviceKey=" + EtaxSaupStateAPITest.API_ENCODING_KEY + "&returnType=JSON";
 
             URL url = new URL(serviceUrl);
