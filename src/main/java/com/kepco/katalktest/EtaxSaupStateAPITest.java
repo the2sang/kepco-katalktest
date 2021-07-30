@@ -68,21 +68,6 @@ public class EtaxSaupStateAPITest {
 
             JSONObject obj1 = new JSONObject();
             obj1.put("b_no", arr);
-//            obj1.put("p_nm", "오은채");
-//            obj1.put("start_dt", "20200101");
-//            obj1.put("p_nm2", "");
-//            obj1.put("b_nm", "");
-//            obj1.put("corp_no", "");
-//            obj1.put("b_sector", "");
-//            obj1.put("b_type", "");
-
-
-
-//            JSONArray ja = new JSONArray();
-//            ja.add(obj1);
-
-//            JSONObject obj3 = new JSONObject();
-//            obj3.put("businesses", ja);
 
             String jsonString = objectMapper.writeValueAsString(obj1);
 
