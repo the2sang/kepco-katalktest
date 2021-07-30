@@ -10,6 +10,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EtaxSaupStateAPITest {
 
@@ -19,7 +21,7 @@ public class EtaxSaupStateAPITest {
 
     private SaupParam sapuParam;
     //private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
-    private static String ETAX_CALL_URL = "http://api.odcloud.kr/api/nts-businessman/v1/state";
+    private static String ETAX_CALL_URL = "https://api.odcloud.kr/api/nts-businessman/v1/state";
     private static String API_KEY = "Hp%2FQS2VGiw1J%2FmoPr2LV6%2Bvs0%2Fm1tiDZbP5BtqtsdRBjXEFbEouNh2nDVVfIDF0UX2mZLLQEsHglWVVbpMqG8A%3D%3D";
 
     private static String API_ENCODING_KEY =
@@ -56,14 +58,16 @@ public class EtaxSaupStateAPITest {
         try {
 
 
+            String serviceUrl = strUrl + "?serviceKey=" + EtaxSaupStateAPITest.API_DECODING_KEY + "&returnType=JSON";
 
-
+            //URL url = new URL(serviceUrl);
             URL url = new URL(strUrl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setConnectTimeout(10000); //서버에 연결되는 Timeout 시간 설정
             con.setReadTimeout(10000); // InputStream 읽어 오는 Timeout 시간 설정
-            con.addRequestProperty("serviceKey", EtaxSaupStateAPITest.API_DECODING_KEY); //key값 설정
-            con.addRequestProperty("returnType", EtaxSaupStateAPITest.RETURN_TYPE);
+            con.addRequestProperty("Authorization", "Infuser " + EtaxSaupStateAPITest.API_DECODING_KEY);
+           // con.addRequestProperty("serviceKey", EtaxSaupStateAPITest.API_DECODING_KEY); //key값 설정
+            //con.addRequestProperty("returnType", EtaxSaupStateAPITest.RETURN_TYPE);
 
             con.setRequestMethod("POST");
 
@@ -71,8 +75,8 @@ public class EtaxSaupStateAPITest {
             con.setRequestProperty("Content-Type", "application/json");
             con.setDoInput(true);
             con.setDoOutput(true); //POST 데이터를 OutputStream으로 넘겨 주겠다는 설정
-            con.setUseCaches(false);
-            con.setDefaultUseCaches(false);
+//            con.setUseCaches(false);
+//            con.setDefaultUseCaches(false);
 
 
             OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
@@ -84,8 +88,11 @@ public class EtaxSaupStateAPITest {
             //ValidateRequestBody requestBody = new ValidateRequestBody();
             //requestBody.addParam(param);
 
+            List<String> arr = new ArrayList<String>();
+            arr.add("7851700813");
+
             JSONObject obj1 = new JSONObject();
-            obj1.put("b_no", "7851700813");
+            obj1.put("b_no", arr);
 //            obj1.put("p_nm", "오은채");
 //            obj1.put("start_dt", "20200101");
 //            obj1.put("p_nm2", "");
