@@ -21,11 +21,12 @@ public class EtaxSaupStateAPITest {
 
     private SaupParam sapuParam;
     //private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
-    private static String ETAX_CALL_URL = "https://api.odcloud.kr/api/nts-businessman/v1/state";
+    private static String ETAX_CALL_URL = "https://api.odcloud.kr/api/nts-businessman/v1/status";
     private static String API_KEY = "Hp%2FQS2VGiw1J%2FmoPr2LV6%2Bvs0%2Fm1tiDZbP5BtqtsdRBjXEFbEouNh2nDVVfIDF0UX2mZLLQEsHglWVVbpMqG8A%3D%3D";
 
     private static String API_ENCODING_KEY =
             "Hp%2FQS2VGiw1J%2FmoPr2LV6%2Bvs0%2Fm1tiDZbP5BtqtsdRBjXEFbEouNh2nDVVfIDF0UX2mZLLQEsHglWVVbpMqG8A%3D%3D";
+     //       "Hp%2FQS2VGiw1J%2FmoPr2LV6%2Bvs0%2Fm1tiDZbP5BtqtsdRBjXEFbEouNh2nDVVfIDF0UX2mZLLQEsHglWVVbpMqG8A%3D%3D"
     private static String API_DECODING_KEY =
             "Hp/QS2VGiw1J/moPr2LV6+vs0/m1tiDZbP5BtqtsdRBjXEFbEouNh2nDVVfIDF0UX2mZLLQEsHglWVVbpMqG8A==";
 
@@ -58,14 +59,15 @@ public class EtaxSaupStateAPITest {
         try {
 
 
-            String serviceUrl = strUrl + "?serviceKey=" + EtaxSaupStateAPITest.API_DECODING_KEY + "&returnType=JSON";
+            String serviceUrl = strUrl + "?serviceKey=" + EtaxSaupStateAPITest.API_ENCODING_KEY + "&returnType=JSON";
 
-            //URL url = new URL(serviceUrl);
-            URL url = new URL(strUrl);
+            URL url = new URL(serviceUrl);
+            //URL url = new URL(strUrl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setConnectTimeout(10000); //서버에 연결되는 Timeout 시간 설정
             con.setReadTimeout(10000); // InputStream 읽어 오는 Timeout 시간 설정
-            con.addRequestProperty("Authorization", "Infuser " + EtaxSaupStateAPITest.API_DECODING_KEY);
+            //con.addRequestProperty("Authorization", "Infuser " + EtaxSaupStateAPITest.API_DECODING_KEY);
+
            // con.addRequestProperty("serviceKey", EtaxSaupStateAPITest.API_DECODING_KEY); //key값 설정
             //con.addRequestProperty("returnType", EtaxSaupStateAPITest.RETURN_TYPE);
 
@@ -89,7 +91,7 @@ public class EtaxSaupStateAPITest {
             //requestBody.addParam(param);
 
             List<String> arr = new ArrayList<String>();
-            arr.add("7851700813");
+            arr.add("1081921785");
 
             JSONObject obj1 = new JSONObject();
             obj1.put("b_no", arr);
