@@ -15,11 +15,6 @@ import java.util.List;
 
 public class EtaxSaupStateAPITest {
 
-    public void setSapuParam(SaupParam sapuParam) {
-        this.sapuParam = sapuParam;
-    }
-
-    private SaupParam sapuParam;
     //private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
     private static String ETAX_CALL_URL = "https://api.odcloud.kr/api/nts-businessman/v1/status";
     private static String API_KEY = "Hp%2FQS2VGiw1J%2FmoPr2LV6%2Bvs0%2Fm1tiDZbP5BtqtsdRBjXEFbEouNh2nDVVfIDF0UX2mZLLQEsHglWVVbpMqG8A%3D%3D";
@@ -32,30 +27,17 @@ public class EtaxSaupStateAPITest {
 
     private static String RETURN_TYPE = "JSON"; // or "XML
 
-
-
     public EtaxSaupStateAPITest() {}
-
-    public EtaxSaupStateAPITest(SaupParam sapuParam) {
-        this.sapuParam = sapuParam;
-    }
 
     public static void main(String[] args) throws JsonParseException {
 
         EtaxSaupStateAPITest restAPITest = new EtaxSaupStateAPITest();
-
-        SaupParam param = new SaupParam();
-        param.setB_no("7851700813"); //코릴 태양광-사업자번호 (필수)
-        param.setP_nm("오은채");  // 대표자명 (필수)
-        param.setStart_dt("20200101"); //개업일자 (필수) - 임의(개업일자 알 수 없음)
-
-        restAPITest.setSapuParam(param);
-        restAPITest.post(EtaxSaupStateAPITest.ETAX_CALL_URL, param);
+        restAPITest.post(EtaxSaupStateAPITest.ETAX_CALL_URL);
 
     }
 
 
-    public void post(String strUrl, SaupParam param) throws JsonParseException {
+    public void post(String strUrl) {
         try {
 
 
@@ -66,10 +48,6 @@ public class EtaxSaupStateAPITest {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setConnectTimeout(10000); //서버에 연결되는 Timeout 시간 설정
             con.setReadTimeout(10000); // InputStream 읽어 오는 Timeout 시간 설정
-            //con.addRequestProperty("Authorization", "Infuser " + EtaxSaupStateAPITest.API_DECODING_KEY);
-
-           // con.addRequestProperty("serviceKey", EtaxSaupStateAPITest.API_DECODING_KEY); //key값 설정
-            //con.addRequestProperty("returnType", EtaxSaupStateAPITest.RETURN_TYPE);
 
             con.setRequestMethod("POST");
 
@@ -84,11 +62,6 @@ public class EtaxSaupStateAPITest {
             OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
 
             ObjectMapper objectMapper = new ObjectMapper();
-
-            //List<SaupParam> businesses = new ArrayList<SaupParam>();
-            //businesses.add(param);
-            //ValidateRequestBody requestBody = new ValidateRequestBody();
-            //requestBody.addParam(param);
 
             List<String> arr = new ArrayList<String>();
             arr.add("1081921785");

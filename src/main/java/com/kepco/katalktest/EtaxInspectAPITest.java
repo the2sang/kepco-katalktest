@@ -42,18 +42,12 @@ public class EtaxInspectAPITest {
 
         EtaxInspectAPITest restAPITest = new EtaxInspectAPITest();
 
-        SaupParam param = new SaupParam();
-        param.setB_no("7851700813"); //코릴 태양광-사업자번호 (필수)
-        param.setP_nm("오은채");  // 대표자명 (필수)
-        param.setStart_dt("20200101"); //개업일자 (필수) - 임의(개업일자 알 수 없음)
-
-        restAPITest.setSapuParam(param);
-        restAPITest.post(EtaxInspectAPITest.ETAX_CALL_URL, param);
+        restAPITest.post(EtaxInspectAPITest.ETAX_CALL_URL);
 
     }
 
 
-    public void post(String strUrl, SaupParam param) throws JsonParseException {
+    public void post(String strUrl)  {
 
         try {
 
@@ -81,11 +75,6 @@ public class EtaxInspectAPITest {
 
             ObjectMapper objectMapper = new ObjectMapper();
 
-            //List<SaupParam> businesses = new ArrayList<SaupParam>();
-            //businesses.add(param);
-            //ValidateRequestBody requestBody = new ValidateRequestBody();
-            //requestBody.addParam(param);
-
             JSONObject obj1 = new JSONObject();
             obj1.put("b_no", "1081921785");
             obj1.put("p_nm", "김찬희");
@@ -96,15 +85,6 @@ public class EtaxInspectAPITest {
             obj1.put("b_sector", "");
             obj1.put("b_type", "");
 
-//            JSONObject obj2 = new JSONObject();
-//            obj2.put("b_no", "7851700813");
-//            obj2.put("p_nm", "오은채");
-//            obj2.put("start_dt", "20200101");
-//            obj2.put("p_nm2", "");
-//            obj2.put("b_nm", "");
-//            obj2.put("corp_no", "");
-//            obj2.put("b_sector", "");
-//            obj2.put("b_type", "");
 
             JSONArray ja = new JSONArray();
             ja.add(obj1);
