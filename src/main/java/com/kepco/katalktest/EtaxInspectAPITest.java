@@ -21,6 +21,13 @@ public class EtaxInspectAPITest {
     //private static String TSMS_CREATE_CALL_URL = "http://localhost:9070/api/tsms-agent-messages";
     private static String ETAX_CALL_URL = "http://api.odcloud.kr/api/nts-businessman/v1/validate";
     private static String API_KEY = "";
+
+    private static String API_ENCODING_KEY =
+            "Hp%2FQS2VGiw1J%2FmoPr2LV6%2Bvs0%2Fm1tiDZbP5BtqtsdRBjXEFbEouNh2nDVVfIDF0UX2mZLLQEsHglWVVbpMqG8A%3D%3D";
+    //       "Hp%2FQS2VGiw1J%2FmoPr2LV6%2Bvs0%2Fm1tiDZbP5BtqtsdRBjXEFbEouNh2nDVVfIDF0UX2mZLLQEsHglWVVbpMqG8A%3D%3D"
+    private static String API_DECODING_KEY =
+            "Hp/QS2VGiw1J/moPr2LV6+vs0/m1tiDZbP5BtqtsdRBjXEFbEouNh2nDVVfIDF0UX2mZLLQEsHglWVVbpMqG8A==";
+
     private static String RETURN_TYPE = "JSON"; // or "XML
 
 
@@ -47,13 +54,18 @@ public class EtaxInspectAPITest {
 
 
     public void post(String strUrl, SaupParam param) throws JsonParseException {
+
         try {
-            URL url = new URL(strUrl);
+
+            String serviceUrl = strUrl + "?serviceKey=" + EtaxInspectAPITest.API_ENCODING_KEY + "&returnType=JSON";
+
+
+            URL url = new URL(serviceUrl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setConnectTimeout(10000); //서버에 연결되는 Timeout 시간 설정
             con.setReadTimeout(10000); // InputStream 읽어 오는 Timeout 시간 설정
-            con.addRequestProperty("serviceKey", EtaxInspectAPITest.API_KEY); //key값 설정
-            con.addRequestProperty("returnType", EtaxInspectAPITest.RETURN_TYPE);
+//            con.addRequestProperty("serviceKey", EtaxInspectAPITest.API_KEY); //key값 설정
+//            con.addRequestProperty("returnType", EtaxInspectAPITest.RETURN_TYPE);
 
             con.setRequestMethod("POST");
 
@@ -75,28 +87,28 @@ public class EtaxInspectAPITest {
             //requestBody.addParam(param);
 
             JSONObject obj1 = new JSONObject();
-            obj1.put("b_no", "7851700813");
-            obj1.put("p_nm", "오은채");
-            obj1.put("start_dt", "20200101");
+            obj1.put("b_no", "1081921785");
+            obj1.put("p_nm", "김찬희");
+            obj1.put("start_dt", "20110701");
             obj1.put("p_nm2", "");
             obj1.put("b_nm", "");
             obj1.put("corp_no", "");
             obj1.put("b_sector", "");
             obj1.put("b_type", "");
 
-            JSONObject obj2 = new JSONObject();
-            obj2.put("b_no", "7851700813");
-            obj2.put("p_nm", "오은채");
-            obj2.put("start_dt", "20200101");
-            obj2.put("p_nm2", "");
-            obj2.put("b_nm", "");
-            obj2.put("corp_no", "");
-            obj2.put("b_sector", "");
-            obj2.put("b_type", "");
+//            JSONObject obj2 = new JSONObject();
+//            obj2.put("b_no", "7851700813");
+//            obj2.put("p_nm", "오은채");
+//            obj2.put("start_dt", "20200101");
+//            obj2.put("p_nm2", "");
+//            obj2.put("b_nm", "");
+//            obj2.put("corp_no", "");
+//            obj2.put("b_sector", "");
+//            obj2.put("b_type", "");
 
             JSONArray ja = new JSONArray();
             ja.add(obj1);
-            ja.add(obj2);
+        //    ja.add(obj2);
 
             JSONObject obj3 = new JSONObject();
             obj3.put("businesses", ja);
