@@ -10,12 +10,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-public class EtaxAPITest {
+public class EtaxInspectAPITest {
 
     public void setSapuParam(SaupParam sapuParam) {
         this.sapuParam = sapuParam;
@@ -29,15 +25,15 @@ public class EtaxAPITest {
 
 
 
-    public EtaxAPITest() {}
+    public EtaxInspectAPITest() {}
 
-    public EtaxAPITest(SaupParam sapuParam) {
+    public EtaxInspectAPITest(SaupParam sapuParam) {
         this.sapuParam = sapuParam;
     }
 
     public static void main(String[] args) throws JsonParseException {
 
-        EtaxAPITest restAPITest = new EtaxAPITest();
+        EtaxInspectAPITest restAPITest = new EtaxInspectAPITest();
 
         SaupParam param = new SaupParam();
         param.setB_no("7851700813"); //코릴 태양광-사업자번호 (필수)
@@ -45,7 +41,7 @@ public class EtaxAPITest {
         param.setStart_dt("20200101"); //개업일자 (필수) - 임의(개업일자 알 수 없음)
 
         restAPITest.setSapuParam(param);
-        restAPITest.post(EtaxAPITest.ETAX_CALL_URL, param);
+        restAPITest.post(EtaxInspectAPITest.ETAX_CALL_URL, param);
 
     }
 
@@ -56,8 +52,8 @@ public class EtaxAPITest {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setConnectTimeout(10000); //서버에 연결되는 Timeout 시간 설정
             con.setReadTimeout(10000); // InputStream 읽어 오는 Timeout 시간 설정
-            con.addRequestProperty("serviceKey", EtaxAPITest.API_KEY); //key값 설정
-            con.addRequestProperty("returnType", EtaxAPITest.RETURN_TYPE);
+            con.addRequestProperty("serviceKey", EtaxInspectAPITest.API_KEY); //key값 설정
+            con.addRequestProperty("returnType", EtaxInspectAPITest.RETURN_TYPE);
 
             con.setRequestMethod("POST");
 
